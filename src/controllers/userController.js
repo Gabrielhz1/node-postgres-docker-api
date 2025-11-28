@@ -40,3 +40,25 @@ export const deleteUser = async (req, res) => {
     }
 
 }
+
+
+export const updtadeUser = async (req, res) => {
+    try {
+        const updated = await User.update(
+            {
+                name: req.body.name,
+                age: req.body.age,
+                email: req.body.email
+            },
+            {
+                where: {id: req.params.id}
+            }
+
+    )
+        res.status(200).json(updated)
+
+    } catch (error) {
+        res.status(500).json({error:"Erro ao deletar um usuário"})
+    }
+
+}
